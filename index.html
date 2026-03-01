@@ -67,11 +67,14 @@
         .mode-group-header .mode-icon { height: 56px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
         .mode-group-header .mode-title { font-size: 1.1rem; font-weight: 700; color: #4A4035; }
         .mode-group-header .mode-desc { font-size: 0.8rem; color: #B8AD9E; margin-top: 4px; }
-        .range-buttons { display: flex; gap: 0; width: 100%; }
-        .range-btn { flex: 1; padding: 14px 8px; border: 2.5px solid #E8E2DA; background: white; font-family: 'Noto Sans KR', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.15s; text-align: center; color: #D35400; }
-        .range-btn:first-child { border-radius: 0 0 0 20px; border-right-width: 1.25px; }
-        .range-btn:last-child { border-radius: 0 0 20px 0; border-left-width: 1.25px; }
+        .range-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; width: 100%; }
+        .range-btn { padding: 14px 8px; border: 2.5px solid #E8E2DA; background: white; font-family: 'Noto Sans KR', sans-serif; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.15s; text-align: center; color: #D35400; border-top-width: 1.25px; }
+        .range-btn:nth-child(1) { border-right-width: 1.25px; }
         .range-btn:nth-child(2) { border-left-width: 1.25px; border-right-width: 1.25px; }
+        .range-btn:nth-child(3) { border-left-width: 1.25px; }
+        .range-btn:nth-child(4) { border-right-width: 1.25px; border-radius: 0 0 0 20px; }
+        .range-btn:nth-child(5) { border-left-width: 1.25px; border-right-width: 1.25px; }
+        .range-btn:nth-child(6) { border-left-width: 1.25px; border-radius: 0 0 20px 0; }
         .range-btn:active { transform: scale(0.97); }
         .range-btn:hover { border-color: #F0A050; background: #FFF6ED; }
 
@@ -275,6 +278,9 @@
                     <button class="range-btn" onclick="startGame(1, 9, 'sequential')">1 ~ 9</button>
                     <button class="range-btn" onclick="startGame(1, 14, 'sequential')">1 ~ 14</button>
                     <button class="range-btn" onclick="startGame(1, 19, 'sequential')">1 ~ 19</button>
+                    <button class="range-btn" onclick="startGame(1, 30, 'sequential')">1 ~ 30</button>
+                    <button class="range-btn" onclick="startGame(1, 50, 'sequential')">1 ~ 50</button>
+                    <button class="range-btn" onclick="startGame(1, 99, 'sequential')">1 ~ 99</button>
                 </div>
             </div>
 
@@ -303,6 +309,9 @@
                     <button class="range-btn" onclick="startGame(1, 9, 'random')">1 ~ 9</button>
                     <button class="range-btn" onclick="startGame(1, 14, 'random')">1 ~ 14</button>
                     <button class="range-btn" onclick="startGame(1, 19, 'random')">1 ~ 19</button>
+                    <button class="range-btn" onclick="startGame(1, 30, 'random')">1 ~ 30</button>
+                    <button class="range-btn" onclick="startGame(1, 50, 'random')">1 ~ 50</button>
+                    <button class="range-btn" onclick="startGame(1, 99, 'random')">1 ~ 99</button>
                 </div>
             </div>
         </div>
