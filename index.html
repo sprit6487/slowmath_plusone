@@ -517,16 +517,12 @@ function generateQuestions(min, max, mode) {
 
 /* ══════════ 보기 생성 ══════════ */
 function generateOptions(correct) {
-    const set = new Set([correct]);
-    while (set.size < 4) {
-        let n = correct + Math.floor(Math.random() * 7) - 3;
-        if (n >= rangeMin && n <= rangeMax + 1 && n !== correct && n >= 1) set.add(n);
-        if (set.size < 4) {
-            let m = Math.floor(Math.random() * (rangeMax - rangeMin + 1)) + rangeMin + 1;
-            if (m !== correct && m >= 1) set.add(m);
-        }
-    }
-    const arr = Array.from(set).slice(0, 4);
+    // 정답 포함 연속 4개 숫자 (correct-1, correct, correct+1, correct+2)
+    let start = correct - 1;
+    if (start < 1) start = 1;
+    if (start + 3 > rangeMax + 1) start = Math.max(1, rangeMax + 1 - 3);
+    const arr = [start, start + 1, start + 2, start + 3];
+    // 셔플
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
