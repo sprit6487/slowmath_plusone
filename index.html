@@ -280,7 +280,7 @@
                     <button class="range-btn" onclick="startGame(1, 19, 'sequential')">1 ~ 19</button>
                     <button class="range-btn" onclick="startGame(1, 30, 'sequential')">1 ~ 30</button>
                     <button class="range-btn" onclick="startGame(1, 50, 'sequential')">1 ~ 50</button>
-                    <button class="range-btn" onclick="startGame(1, 99, 'sequential')">1 ~ 99</button>
+                    <button class="range-btn" onclick="startGame(51, 99, 'sequential')">51 ~ 99</button>
                 </div>
             </div>
 
@@ -311,7 +311,7 @@
                     <button class="range-btn" onclick="startGame(1, 19, 'random')">1 ~ 19</button>
                     <button class="range-btn" onclick="startGame(1, 30, 'random')">1 ~ 30</button>
                     <button class="range-btn" onclick="startGame(1, 50, 'random')">1 ~ 50</button>
-                    <button class="range-btn" onclick="startGame(1, 99, 'random')">1 ~ 99</button>
+                    <button class="range-btn" onclick="startGame(51, 99, 'random')">51 ~ 99</button>
                 </div>
             </div>
         </div>
@@ -509,6 +509,7 @@ function generateQuestions(min, max, mode) {
             const j = Math.floor(Math.random() * (i + 1));
             [questions[i], questions[j]] = [questions[j], questions[i]];
         }
+        questions = questions.slice(0, 10);
     }
     TOTAL = questions.length;
     rangeMin = min;
