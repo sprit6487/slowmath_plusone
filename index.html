@@ -130,9 +130,9 @@
         /* ── 문제 표시 ── */
         .question-display { text-align: center; margin-bottom: 32px; padding: 24px 0; }
         .question-display .equation { font-size: 3.5rem; font-weight: 900; color: #4A4035; line-height: 1; display: flex; align-items: center; justify-content: center; gap: 12px; }
-        .question-display .eq-num { color: #4A4035; }
-        .question-display .eq-plus { color: #F07070; }
-        .question-display .eq-one { color: #F07070; }
+        .question-display .eq-num { color: #6BADE8; }
+        .question-display .eq-plus { color: #C8C0B4; }
+        .question-display .eq-one { color: #F0A050; }
         .question-display .eq-eq { color: #C8C0B4; font-size: 2.5rem; }
         .question-display .eq-q { color: #D8D2C8; font-size: 3.5rem; }
         .question-display .hint { font-size: 1rem; font-weight: 600; color: #B8AD9E; margin-top: 12px; }
@@ -279,9 +279,30 @@
                     <div class="mode-desc">숫자를 보고 1을 더한 답을 골라요</div>
                 </div>
                 <div class="range-buttons">
-                    <button class="range-btn" onclick="startGame(1, 9)">1 ~ 9</button>
-                    <button class="range-btn" onclick="startGame(1, 14)">1 ~ 14</button>
-                    <button class="range-btn" onclick="startGame(1, 19)">1 ~ 19</button>
+                    <button class="range-btn" onclick="startGame(1, 9, 'random')">1 ~ 9</button>
+                    <button class="range-btn" onclick="startGame(1, 14, 'random')">1 ~ 14</button>
+                    <button class="range-btn" onclick="startGame(1, 19, 'random')">1 ~ 19</button>
+                </div>
+            </div>
+
+            <div class="mode-group">
+                <div class="mode-group-header">
+                    <div class="mode-icon">
+                        <div class="plus-icon">
+                            <span style="font-size:1.6rem; font-weight:900; color:#6BADE8;">1</span>
+                            <span style="font-size:1.2rem; font-weight:900; color:#C8C0B4; margin:0 2px;">→</span>
+                            <span style="font-size:1.6rem; font-weight:900; color:#6BADE8;">2</span>
+                            <span style="font-size:1.2rem; font-weight:900; color:#C8C0B4; margin:0 2px;">→</span>
+                            <span style="font-size:1.6rem; font-weight:900; color:#6BADE8;">3</span>
+                        </div>
+                    </div>
+                    <div class="mode-title">순서대로 더하기 1</div>
+                    <div class="mode-desc">1부터 차례대로 1을 더해요</div>
+                </div>
+                <div class="range-buttons">
+                    <button class="range-btn" onclick="startGame(1, 9, 'sequential')">1 ~ 9</button>
+                    <button class="range-btn" onclick="startGame(1, 14, 'sequential')">1 ~ 14</button>
+                    <button class="range-btn" onclick="startGame(1, 19, 'sequential')">1 ~ 19</button>
                 </div>
             </div>
         </div>
@@ -471,13 +492,14 @@ function setImpulseDelay(sec) {
 }
 
 /* ══════════ 문제 생성 ══════════ */
-function generateQuestions(min, max) {
+function generateQuestions(min, max, mode) {
     questions = [];
     for (let i = min; i <= max; i++) questions.push(i);
-    // 셔플
-    for (let i = questions.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [questions[i], questions[j]] = [questions[j], questions[i]];
+    if (mode === 'random') {
+        for (let i = questions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [questions[i], questions[j]] = [questions[j], questions[i]];
+        }
     }
     TOTAL = questions.length;
     rangeMin = min;
@@ -504,8 +526,8 @@ function generateOptions(correct) {
 }
 
 /* ══════════ 게임 시작 ══════════ */
-function startGame(min, max) {
-    generateQuestions(min, max);
+function startGame(min, max, mode) {
+    generateQuestions(min, max, mode || 'random');
     currentQ = 0;
     score = 0;
     showView('game-view');
